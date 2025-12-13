@@ -59,7 +59,7 @@ USER aidev
 # ========== Install python libraries ==========
 #
 # Set the working directory for the project
-WORKDIR /workspace
+WORKDIR /home/aidev/workspace
 
 # Copy the python requirements file into container
 COPY --chown=aidev:aidev requirements.txt .
