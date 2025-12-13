@@ -68,6 +68,8 @@ COPY --chown=aidev:aidev requirements.txt .
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
+ENV PATH /home/aidev/.local/bin:$PATH
+
 # Keep the container running for the dev container to attach to
 # CMD ["sleep", "infinity"]
 
