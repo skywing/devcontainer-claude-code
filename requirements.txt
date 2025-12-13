@@ -1,0 +1,5 @@
+click
+python-dotenv
+requests
+ruff
+tqdm
