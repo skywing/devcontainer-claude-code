@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
   python${PYTHON_VERSION} \
   python${PYTHON_VERSION}-venv \
   git \
+  gh \
   curl \
   build-essential \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
