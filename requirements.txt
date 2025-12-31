@@ -1,14 +1,35 @@
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-sqlalchemy==2.0.23
-psycopg2-binary==2.9.9
-python-dotenv==1.0.0
-pydantic==2.5.0
-pydantic-settings==2.1.0
-python-jose[cryptography]==3.3.0
-passlib[bcrypt]==1.7.4
-python-multipart==0.0.6
-cors==1.0.1
-alembic==1.13.0
-pytest==7.4.3
-httpx==0.25.1
+# Web Framework
+fastapi
+uvicorn[standard]
+python-multipart
+python-dotenv
+pydantic
+pydantic-settings
+cors
+
+# Database
+sqlalchemy
+alembic
+psycopg2-binary
+asyncpg
+
+# File Handling
+pandas
+openpyxl
+reportlab
+weasyprint
+
+# Workflow
+celery
+redis
+
+# Encryption
+python-jose[cryptography]
+passlib[bcrypt]
+
+# Testing
+pytest
+pytest-asyncio
+httpx
+pytest-cov
+
