@@ -27,7 +27,6 @@ RUN apt-get update && apt-get install -y \
   less \
   procps \
   sudo \
-  fzf \
   zsh \
   man-db \
   unzip \
@@ -44,6 +43,8 @@ RUN apt-get update && apt-get install -y \
   fd-find \
   build-essential \
   language-pack-en \
+  postgresql \
+  postgresql-contrib \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
@@ -126,7 +127,6 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
   -p pip \
   -p postgres \
   -p python \
-  -p tmux \
   -p copyfile \
   -p copypath \
   -a "export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
