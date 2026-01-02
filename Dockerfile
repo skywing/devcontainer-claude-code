@@ -41,7 +41,10 @@ RUN apt-get update && apt-get install -y \
   nano \
   vim \
   neovim \
+  fd-find \
+  tmux \
   build-essential \
+  language-pack-en \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
@@ -107,13 +110,26 @@ ENV SHELL=/bin/zsh
 ENV EDITOR=neovim
 ENV VISUAL=neovim
 
-# Default powerline10k theme
+# Install FZF from github instead of using ubuntu older version that doesn't support tmux and other options.
+RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+RUN ~/.fzf/install --all
+ENV FZF_DEFAULT_OPTS='--height 40% --tmux center --style full --preview "fzf-preview.sh {}" --bind "focus:transform-header:file --brief {}"'
+
+# Installing ZSH for container and configure powerline10k 
 ARG ZSH_IN_DOCKER_VERSION=1.2.1
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v${ZSH_IN_DOCKER_VERSION}/zsh-in-docker.sh)" -- \
   -p git \
   -p fzf \
-  -a "source /usr/share/doc/fzf/examples/key-bindings.zsh" \
-  -a "source /usr/share/doc/fzf/examples/completion.zsh" \
+  -p github \
+  -p gh \
+  -p node \
+  -p npm \
+  -p pip \
+  -p postgres \
+  -p python \
+  -p tmux \
+  -p copyfile \
+  -p copypath \
   -a "export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
   -x
 
