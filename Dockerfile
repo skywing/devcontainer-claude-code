@@ -72,9 +72,9 @@ RUN apt-get update && apt-get install -y curl \
     && apt-get install -y nodejs \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-
 RUN mkdir -p /usr/local/share/npm-global && \
     chown -R aidev:aidev /usr/local/share
+
 
 # Persist bash history
 RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
@@ -132,12 +132,16 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
   -a "export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
   -x
 
+# ========== install bun ===================
+RUN curl -fsSL https://bun.com/install | bash  
+ENV PATH="/home/aidev/.bun/bin:$PATH"
+
 # Install Claude
-RUN npm install -g @anthropic-ai/claude-code
+RUN curl -fsSL https://claude.ai/install.sh | bash
 
 # Install Playwright with Chromium headless browswer
-RUN npm install -g playwright
-RUN npx playwright install --with-deps --only-shell chromium
+RUN bun install playwright
+RUN bunx playwright install --with-deps --only-shell chromium
 #
 # ========== Install python libraries ==========
 #
