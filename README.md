@@ -30,5 +30,10 @@ podman build -t [YOUR_CONTAINER_IMAGE_NAME]
 Use the following command structure to execute any Claude CLI command inside the container.
 
 ```bash
- podman run -it -v "$(pwd)":/home/aidev/workspace /bin/bash
+ podman run -it --rm \
+    --name [YOUR_CONTAINER_NAME] \
+    --userns=keep-id:uid=1000,gid=1000 \
+    -v "$(pwd):/workspace:Z" \
+    [YOUR_CONTAINER_IMAGE_NAME] /bin/zsh
+
 ```

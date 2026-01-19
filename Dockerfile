@@ -138,6 +138,7 @@ ENV PATH="/home/aidev/.bun/bin:$PATH"
 
 # Install Claude
 RUN curl -fsSL https://claude.ai/install.sh | bash
+ENV ENABLE_LSP_TOOL=1
 
 # Install Playwright with Chromium headless browswer
 RUN bun install playwright
